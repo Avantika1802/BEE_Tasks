@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Blog Posts</title>
+</head>
+<body>
+    <h1>Blog Posts</h1>
+    <form action="/posts" method="POST">
+        <input type="text" name="title" placeholder="Post Title" required><br>
+        <textarea name="body" placeholder="Post Body" rows="5" required></textarea><br>
+        <button type="submit">Add Post</button>
+    </form>
+    <h2>All Posts</h2>
+    <% posts.forEach(post => { %>
+        <div>
+            <h3><a href="/posts/<%= post.title %>"><%= post.title %></a></h3>
+            <p><%= post.body %></p>
+        </div>
+    <% }); %>
+</body>
+</html>
