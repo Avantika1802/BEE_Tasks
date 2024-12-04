@@ -1,0 +1,82 @@
+Question 1.
+CREATE TABLE Books (
+    BookID INT PRIMARY KEY,
+    Title VARCHAR(100),
+    Author VARCHAR(50),
+    PublishedYear INT
+);
+
+ALTER TABLE Books
+ADD ISBN VARCHAR(13);
+
+ALTER TABLE Books
+DROP COLUMN PublishedYear;
+
+Question 2.
+CREATE TABLE Students (
+    StudentID INT PRIMARY KEY,
+    Name VARCHAR(50),
+    Age INT,
+    Grade VARCHAR(2)
+);
+
+INSERT INTO Students (StudentID, Name, Age, Grade)
+VALUES 
+(101, 'John Smith', 15, 'A'),
+(102, 'Jane Doe', 16, 'B'),
+(103, 'Alice Lee', 14, 'A');
+
+SELECT Name
+FROM Students
+WHERE Age > 15;
+
+INSERT INTO Students (StudentID, Name, Age, Grade)
+VALUES (104, 'Tom Brown', 15, 'C'); 
+UPDATE Students
+SET Grade = 'A+'
+WHERE Name = 'Jane Doe';
+
+DELETE FROM Students
+WHERE Grade = 'C';
+
+Question 3.
+CREATE USER "sam" Identified BY "123";
+GRANT SELECT, INSERT ON Books to "sam"
+GRANT SELECT, INSERT ON Library.Books TO 'sam';
+REVOKE INSERT ON Library.Books FROM 'sam';
+
+Question 4.
+START TRANSACTION;
+
+use Orders;
+UPDATE orders 
+SET Quantity = Quantity - 2 
+WHERE ProductID = 105;
+
+-- If no errors, commit the transaction
+COMMIT;
+
+
+Question 5.
+CREATE TABLE Customer (
+    CustomerID INT PRIMARY KEY,
+    Name VARCHAR(50),
+    Email VARCHAR(50),
+    Phone VARCHAR(15)
+);
+
+INSERT INTO Customer (CustomerID, Name, Email, Phone)
+VALUES (201, 'Emily Clark', 'emily@example.com', '1234567890');
+
+START TRANSACTION;
+
+CREATE USER 'Admin'@'localhost' IDENTIFIED BY 'admin';
+GRANT SELECT, INSERT ON school.students TO 'Admin'@'localhost';
+
+ROLLBACK;
+
+
+
+
+
+
